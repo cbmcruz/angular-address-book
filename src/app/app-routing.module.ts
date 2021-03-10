@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { ContactEditComponent } from './contact-edit/contact-edit.component';
+import { ContactCreateComponent } from './contact-create/contact-create.component';
 
-
+const routes: Routes = [
+  { path: '', redirectTo: '/favorites', pathMatch: 'full' },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'detail/:id', component: ContactDetailComponent },
+  { path: 'edit/:id', component: ContactEditComponent },
+  { path: 'create', component: ContactCreateComponent },
+];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
