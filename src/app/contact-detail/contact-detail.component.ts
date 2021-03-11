@@ -1,15 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContactService } from '../contact.service';
+import { Contact } from '../contact';
 
 @Component({
   selector: 'app-contact-detail',
   templateUrl: './contact-detail.component.html',
-  styleUrls: ['./contact-detail.component.css']
+  styleUrls: ['./contact-detail.component.css'],
 })
 export class ContactDetailComponent implements OnInit {
+  contact!: Contact;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private contactSerivce: ContactService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.getContact();
   }
 
+  getContact(): void {
+    const id = +[this.route.snapshot.paramMap.get('id')];
+    this.contactSerivce
+      .getContact(id)
+      .subscribe((contact) => (this.contact = contact));
+  }
+
+  goBack(): void {
+    this.router.navigate(['/contacts']);
+  }
 }

@@ -1,1 +1,11 @@
-<p>contact-detail works!</p>
+<div *ngIf="contact">
+  <a routerLink="/edit/{{ contact.id }}">edit</a>
+  <p>First name: {{ contact.firstName }}</p>
+  <p>Last name: {{ contact.lastName }}</p>
+  <p>Nickname: {{ contact.nickname }}</p>
+  <p>Address: {{ contact.address }}</p>
+  <p>Email: {{ contact.email }}</p>
+  <p>Phone: {{ contact.phone }}</p>
+  <p>Favorite: {{ contact.favorite }}</p>
+  <button (click)="goBack()">go back</button>
+</div>

@@ -5,6 +5,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/favorites', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: ContactDetailComponent },
   { path: 'edit/:id', component: ContactEditComponent },
   { path: 'create', component: ContactCreateComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

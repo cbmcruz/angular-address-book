@@ -10,7 +10,9 @@ export class InMemoryDataService implements InMemoryDbService {
     const contacts = [
       {
         id: 0,
-        name: 'Bob',
+        firstName: 'Bob',
+        lastName: 'Mann',
+        nickname: 'Bobby',
         address: '123 Maple Road',
         email: 'bob@gmail.com',
         phone: '8019998888',
@@ -18,7 +20,9 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 1,
-        name: 'Jane',
+        firstName: 'Jane',
+        lastName: 'Johnson',
+        nickname: 'JJ',
         address: '123 Alpine Road',
         email: 'jane@gmail.com',
         phone: '8015554444',
@@ -26,7 +30,9 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 2,
-        name: 'Grace',
+        firstName: 'Grace',
+        lastName: 'Williams',
+        nickname: '',
         address: '123 Birch Road',
         email: 'grace@gmail.com',
         phone: '8017771111',
@@ -34,7 +40,9 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 3,
-        name: 'Eric',
+        firstName: 'Eric',
+        lastName: 'Jobs',
+        nickname: '',
         address: '123 Spruce Road',
         email: 'eric@gmail.com',
         phone: '8013332222',

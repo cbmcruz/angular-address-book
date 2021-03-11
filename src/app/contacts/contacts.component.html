@@ -1,1 +1,10 @@
-<p>contacts works!</p>
+<nav class="nav nav-pills">
+  <a class="nav-item nav-link" routerLink="/favorites">Favorites</a>
+  <a class="nav-item nav-link active" routerLink="/contacts">Contacts</a>
+</nav>
+<a routerLink="/create">add</a>
+<ul>
+  <li *ngFor="let contact of contacts | sortContacts">
+    <a routerLink="/detail/{{ contact.id }}">{{ contact.firstName }}</a>
+  </li>
+</ul>
