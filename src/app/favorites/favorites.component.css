@@ -16,6 +16,12 @@
   background-color: rgba(0, 0, 0, 0.075);
 }
 
+.favoriteTile:focus {
+  outline: none;
+  border-width: 2px;
+  border-color: black;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

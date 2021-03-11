@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Address Book';
+  showingDebugMessages = false;
+
+  toggleDebugMessages(): void {
+    this.showingDebugMessages = !this.showingDebugMessages;
+  }
 }

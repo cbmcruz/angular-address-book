@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageService } from '../message.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./messages.component.css'],
 })
 export class MessagesComponent implements OnInit {
+  @Output() childEvent = new EventEmitter();
   messages!: string[];
 
   constructor(public messageService: MessageService) {}
@@ -22,5 +23,9 @@ export class MessagesComponent implements OnInit {
   clearMessages(): void {
     this.messageService.clear();
     this.getMessages();
+  }
+
+  close(): void {
+    this.childEvent.emit();
   }
 }

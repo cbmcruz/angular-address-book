@@ -1,7 +1,9 @@
-.main {
-  height: 100vh;
-}
-
 .title {
   margin: 3rem;
+}
+
+.messages {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
 }

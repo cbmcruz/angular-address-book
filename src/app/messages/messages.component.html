@@ -1,5 +1,28 @@
-<div *ngIf="messages.length">
-  <h2>Messages</h2>
-  <button (click)="clearMessages()">Clear messages</button>
-  <div *ngFor="let message of messages">{{ message }}</div>
+<div class="messageContainer">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="ionicon"
+    viewBox="0 0 512 512"
+    (click)="close()"
+    class="close"
+  >
+    <title>Close</title>
+    <path
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="32"
+      d="M368 368L144 144M368 144L144 368"
+    />
+  </svg>
+  <h2>Debug Messages</h2>
+  <div class="messagesWindow">
+    <div *ngFor="let message of messages" class="debugMessage">
+      {{ message }}
+    </div>
+  </div>
+  <button class="btn btn-outline-secondary" (click)="clearMessages()">
+    Clear Messages
+  </button>
 </div>

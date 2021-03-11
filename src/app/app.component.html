@@ -1,5 +1,15 @@
-<div class="d-flex flex-column main align-items-center">
+<div class="d-flex flex-column align-items-center">
   <h1 class="title">{{ title }}</h1>
   <router-outlet></router-outlet>
-  <!-- <app-messages></app-messages> -->
+  <button
+    *ngIf="!showingDebugMessages"
+    class="messages btn btn-outline-secondary"
+    (click)="toggleDebugMessages()"
+  >
+    Debug Messages
+  </button>
+  <app-messages
+    *ngIf="showingDebugMessages"
+    (childEvent)="toggleDebugMessages()"
+  ></app-messages>
 </div>

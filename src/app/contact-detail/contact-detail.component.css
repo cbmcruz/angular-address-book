@@ -1,3 +1,11 @@
+:host {
+  width: 100%;
+}
+
+.contactInfo {
+  display: inline-block;
+}
+
 .contactInfoLine {
   padding-top: 2rem;
 }
