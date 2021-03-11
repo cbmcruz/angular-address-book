@@ -66,8 +66,26 @@
         placeholder="Phone"
       />
     </div>
-    <button type="submit" class="btn btn-primary" (click)="save()">save</button>
+    <div class="form-check form-group">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="contact-favorite"
+        name="contact-favorite"
+        [(ngModel)]="contact.favorite"
+      />
+      <label class="form-check-label" for="contact-favorite">Favorite</label>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-outline-danger" (click)="delete(contact)">
+        Delete
+      </button>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-outline-success" (click)="save()">
+        Save
+      </button>
+      <button class="btn btn-outline-primary" (click)="goBack()">Cancel</button>
+    </div>
   </form>
-  <button (click)="goBack()">go back</button>
-  <button (click)="delete(contact)">delete</button>
 </div>

@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -36,6 +36,7 @@ import { SortContactsPipe } from './sort-contacts.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
       dataEncapsulation: false,
     }),

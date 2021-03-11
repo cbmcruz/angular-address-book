@@ -1,0 +1,24 @@
+:host {
+  width: 100%;
+}
+
+.favoriteTile {
+  border: 1px solid #dee2e6;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  cursor: pointer;
+}
+
+.favoriteTile:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 5rem;
+}

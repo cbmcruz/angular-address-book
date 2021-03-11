@@ -16,7 +16,7 @@ export class InMemoryDataService implements InMemoryDbService {
         address: '123 Maple Road',
         email: 'bob@gmail.com',
         phone: '8019998888',
-        favorite: false,
+        favorite: true,
       },
       {
         id: 1,
@@ -26,7 +26,7 @@ export class InMemoryDataService implements InMemoryDbService {
         address: '123 Alpine Road',
         email: 'jane@gmail.com',
         phone: '8015554444',
-        favorite: false,
+        favorite: true,
       },
       {
         id: 2,
@@ -36,7 +36,7 @@ export class InMemoryDataService implements InMemoryDbService {
         address: '123 Birch Road',
         email: 'grace@gmail.com',
         phone: '8017771111',
-        favorite: false,
+        favorite: true,
       },
       {
         id: 3,
@@ -46,6 +46,26 @@ export class InMemoryDataService implements InMemoryDbService {
         address: '123 Spruce Road',
         email: 'eric@gmail.com',
         phone: '8013332222',
+        favorite: true,
+      },
+      {
+        id: 4,
+        firstName: 'Shelly',
+        lastName: 'Smith',
+        nickname: '',
+        address: '123 Oak Road',
+        email: 'shelly@gmail.com',
+        phone: '8013332211',
+        favorite: true,
+      },
+      {
+        id: 5,
+        firstName: 'James',
+        lastName: 'Smith',
+        nickname: '',
+        address: '123 Oak Road',
+        email: 'james@gmail.com',
+        phone: '8013322211',
         favorite: false,
       },
     ];

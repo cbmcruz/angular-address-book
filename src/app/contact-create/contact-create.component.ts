@@ -46,7 +46,10 @@ export class ContactCreateComponent implements OnInit {
         phone,
         favorite,
       } as Contact)
-      .subscribe((contact) => this.router.navigate(['/detail', contact.id]));
+      .subscribe((contact) => {
+        this.location.replaceState('/contacts');
+        this.router.navigate(['/detail', contact.id]);
+      });
   }
 
   goBack(): void {

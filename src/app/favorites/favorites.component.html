@@ -1,5 +1,20 @@
-<nav class="nav nav-pills">
-  <a class="nav-item nav-link active" routerLink="/favorites">Favorites</a>
-  <a class="nav-item nav-link" routerLink="/contacts">Contacts</a>
+<nav class="nav nav-pills justify-content-around">
+  <a
+    class="btn btn-outline-primary nav-item nav-link active"
+    routerLink="/favorites"
+    >Favorites</a
+  >
+  <a class="btn btn-outline-primary nav-item nav-link" routerLink="/contacts"
+    >Contacts</a
+  >
 </nav>
-<p>favorites works!</p>
+<p *ngIf="favorites && favorites.length === 0">No Favorites</p>
+<div class="grid">
+  <div
+    class="favoriteTile"
+    *ngFor="let favorite of favorites | sortContacts"
+    routerLink="/detail/{{ favorite.id }}"
+  >
+    {{ favorite.firstName }}
+  </div>
+</div>

@@ -59,7 +59,7 @@
       #contactPhone
     />
   </div>
-  <div class="form-check">
+  <div class="form-check form-group">
     <input
       type="checkbox"
       class="form-check-input"
@@ -68,22 +68,24 @@
     />
     <label class="form-check-label" for="contact-favorite">Favorite</label>
   </div>
-  <button
-    type="submit"
-    class="btn btn-primary"
-    (click)="
-      add(
-        contactFirstName.value,
-        contactLastName.value,
-        contactNickname.value,
-        contactAddress.value,
-        contactEmail.value,
-        contactPhone.value,
-        contactFavorite.checked
-      )
-    "
-  >
-    add
-  </button>
+  <div class="d-flex justify-content-between">
+    <button
+      type="submit"
+      class="btn btn-outline-success"
+      (click)="
+        add(
+          contactFirstName.value,
+          contactLastName.value,
+          contactNickname.value,
+          contactAddress.value,
+          contactEmail.value,
+          contactPhone.value,
+          contactFavorite.checked
+        )
+      "
+    >
+      Add
+    </button>
+    <button class="btn btn-outline-primary" (click)="goBack()">Cancel</button>
+  </div>
 </form>
-<button (click)="goBack()">go back</button>

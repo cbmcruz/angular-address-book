@@ -1,11 +1,15 @@
 <div *ngIf="contact">
-  <a routerLink="/edit/{{ contact.id }}">edit</a>
-  <p>First name: {{ contact.firstName }}</p>
-  <p>Last name: {{ contact.lastName }}</p>
-  <p>Nickname: {{ contact.nickname }}</p>
-  <p>Address: {{ contact.address }}</p>
-  <p>Email: {{ contact.email }}</p>
-  <p>Phone: {{ contact.phone }}</p>
-  <p>Favorite: {{ contact.favorite }}</p>
-  <button (click)="goBack()">go back</button>
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-outline-primary" (click)="goBack()">Back</button>
+    <a class="btn btn-outline-primary" routerLink="/edit/{{ contact.id }}"
+      >Edit</a
+    >
+  </div>
+  <div class="contactInfoLine">First name: {{ contact.firstName }}</div>
+  <div class="contactInfoLine">Last name: {{ contact.lastName }}</div>
+  <div class="contactInfoLine">Nickname: {{ contact.nickname }}</div>
+  <div class="contactInfoLine">Address: {{ contact.address }}</div>
+  <div class="contactInfoLine">Email: {{ contact.email }}</div>
+  <div class="contactInfoLine">Phone: {{ contact.phone }}</div>
+  <div class="contactInfoLine">Favorite: {{ contact.favorite }}</div>
 </div>

@@ -1,0 +1,23 @@
+app-contacts {
+  width: 100%;
+}
+
+.ionicon {
+  height: 32px;
+}
+
+span.ngb-highlight {
+  background-color: yellow;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.tableheading {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
