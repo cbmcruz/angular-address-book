@@ -12,7 +12,9 @@
       <div class="contactInfoLine">Nickname: {{ contact.nickname }}</div>
       <div class="contactInfoLine">Address: {{ contact.address }}</div>
       <div class="contactInfoLine">Email: {{ contact.email }}</div>
-      <div class="contactInfoLine">Phone: {{ contact.phone }}</div>
+      <div class="contactInfoLine">
+        Phone: {{ contact.phone | formatPhone }}
+      </div>
       <div class="contactInfoLine">Favorite: {{ contact.favorite }}</div>
     </div>
   </div>

@@ -15,6 +15,9 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SortContactsPipe } from './sort-contacts.pipe';
+import { WhitespaceDirective } from './whitespace.directive';
+import { FormatPhonePipe } from './format-phone.pipe';
+import { EmailDirective } from './email.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { SortContactsPipe } from './sort-contacts.pipe';
     ContactCreateComponent,
     PageNotFoundComponent,
     SortContactsPipe,
+    WhitespaceDirective,
+    FormatPhonePipe,
+    EmailDirective,
   ],
   imports: [
     BrowserModule,
