@@ -22,6 +22,9 @@ export class ContactDetailComponent implements OnInit {
     this.getContact();
   }
 
+  /**
+   * Populates the contact
+   */
   getContact(): void {
     const id = +[this.route.snapshot.paramMap.get('id')];
     this.contactSerivce
@@ -29,6 +32,9 @@ export class ContactDetailComponent implements OnInit {
       .subscribe((contact) => (this.contact = contact));
   }
 
+  /**
+   * Goes to previous page in history
+   */
   goBack(): void {
     this.location.back();
   }

@@ -20,6 +20,10 @@ export class ContactService {
     private messageService: MessageService
   ) {}
 
+  /**
+   * Gets all contacts
+   * @returns - contacts from dummy server
+   */
   getContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>(this.contactsUrl).pipe(
       tap((_) => this.log('fetched contacts')),
@@ -27,6 +31,11 @@ export class ContactService {
     );
   }
 
+  /**
+   * Gets the contact with the provided id
+   * @param id - the id of the contact to get
+   * @returns - contact with id or undefined if not found
+   */
   getContactNo404(id: number): Observable<Contact> {
     const url = `${this.contactsUrl}/?id=${id}`;
     return this.http.get<Contact[]>(url).pipe(
@@ -39,6 +48,11 @@ export class ContactService {
     );
   }
 
+  /**
+   * Gets the contact with the provided id
+   * @param id - the id of the contact to get
+   * @returns - contact with id or 404 if not found
+   */
   getContact(id: number): Observable<Contact> {
     const url = `${this.contactsUrl}/${id}`;
     return this.http.get<Contact>(url).pipe(
@@ -47,20 +61,32 @@ export class ContactService {
     );
   }
 
-  searchContact(term: string): Observable<Contact[]> {
+  /**
+   * Gets the contacts whose first name contains the seach term
+   * @param term - the search term
+   * @returns - contacts whose first name contains the seach term
+   */
+  searchContacts(term: string): Observable<Contact[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Contact[]>(`${this.contactsUrl}/?name=${term}`).pipe(
-      tap((x) =>
-        x.length
-          ? this.log(`found contacts matching "${term}"`)
-          : this.log(`no contacts matching "${term}"`)
-      ),
-      catchError(this.handleError<Contact[]>('searchContacts', []))
-    );
+    return this.http
+      .get<Contact[]>(`${this.contactsUrl}/?firstName=${term}`)
+      .pipe(
+        tap((x) =>
+          x.length
+            ? this.log(`found contacts matching "${term}"`)
+            : this.log(`no contacts matching "${term}"`)
+        ),
+        catchError(this.handleError<Contact[]>('searchContacts', []))
+      );
   }
 
+  /**
+   * Adds a contact to the dummy server
+   * @param contact - the contact to add
+   * @returns - the added contact with id
+   */
   addContact(contact: Contact): Observable<Contact> {
     return this.http
       .post<Contact>(this.contactsUrl, contact, this.httpOptions)
@@ -72,6 +98,11 @@ export class ContactService {
       );
   }
 
+  /**
+   * Deletes a contact from the dummy server
+   * @param contact - the contact to delete
+   * @returns - the deleted contact
+   */
   deleteContact(contact: Contact | number): Observable<Contact> {
     const id = typeof contact === 'number' ? contact : contact.id;
     const url = `${this.contactsUrl}/${id}`;
@@ -82,6 +113,11 @@ export class ContactService {
     );
   }
 
+  /**
+   * Updates a contact on the dummy server
+   * @param contact - the contact to update
+   * @returns - the updated contact
+   */
   updateContact(contact: Contact): Observable<any> {
     return this.http.put(this.contactsUrl, contact, this.httpOptions).pipe(
       tap((_) => this.log(`updated hero id=${contact.id}`)),
@@ -89,6 +125,12 @@ export class ContactService {
     );
   }
 
+  /**
+   * Handles errors from failed Http operations. Allows the app to continue running
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   * @returns - the provided result
+   */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -99,6 +141,10 @@ export class ContactService {
     };
   }
 
+  /**
+   * Logs a message
+   * @param message - message to log
+   */
   private log(message: string) {
     this.messageService.add(`ContactService: ${message}`);
   }

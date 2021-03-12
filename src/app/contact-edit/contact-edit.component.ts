@@ -23,6 +23,9 @@ export class ContactEditComponent implements OnInit {
     this.getContact();
   }
 
+  /**
+   * Populates the contact
+   */
   getContact(): void {
     const id = +[this.route.snapshot.paramMap.get('id')];
     this.contactService
@@ -30,16 +33,26 @@ export class ContactEditComponent implements OnInit {
       .subscribe((contact) => (this.contact = contact));
   }
 
+  /**
+   * Goes to previous page in history
+   */
   goBack(): void {
     this.location.back();
   }
 
+  /**
+   * Saves the contact information
+   */
   save(): void {
     this.contactService
       .updateContact(this.contact)
       .subscribe(() => this.goBack());
   }
 
+  /**
+   * Deletes the contact
+   * @param contact - contact to delete
+   */
   delete(contact: Contact): void {
     this.contactService
       .deleteContact(contact)

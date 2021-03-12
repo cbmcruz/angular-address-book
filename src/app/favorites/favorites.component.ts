@@ -16,6 +16,9 @@ export class FavoritesComponent implements OnInit {
     this.getFavorites();
   }
 
+  /**
+   * Populates the favorites
+   */
   getFavorites(): void {
     this.contactService
       .getContacts()

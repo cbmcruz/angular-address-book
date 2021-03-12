@@ -18,6 +18,16 @@ export class ContactCreateComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Adds a new contact
+   * @param firstName - the first name of the new contact
+   * @param lastName - the last name of the new contact
+   * @param nickname - the nickname of the new contact
+   * @param address - the address of the new contact
+   * @param email - the email of the new contact
+   * @param phone - the phone number of the new contact
+   * @param favorite - if the new contact is a favorite
+   */
   add(
     firstName: string,
     lastName: string,
@@ -52,6 +62,9 @@ export class ContactCreateComponent implements OnInit {
       });
   }
 
+  /**
+   * Goes to previous page in history
+   */
   goBack(): void {
     this.location.back();
   }

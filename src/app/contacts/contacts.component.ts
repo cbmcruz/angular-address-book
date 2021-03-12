@@ -20,6 +20,9 @@ export class ContactsComponent implements OnInit {
     this.getContacts();
   }
 
+  /**
+   * Populates the contacts
+   */
   getContacts(): void {
     this.contactService.getContacts().subscribe((contacts) =>
       this.filter.valueChanges

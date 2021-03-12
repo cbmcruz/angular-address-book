@@ -16,15 +16,24 @@ export class MessagesComponent implements OnInit {
     this.getMessages();
   }
 
+  /**
+   * Populates the messages
+   */
   getMessages(): void {
     this.messages = this.messageService.messages;
   }
 
+  /**
+   * Clears the messages
+   */
   clearMessages(): void {
     this.messageService.clear();
     this.getMessages();
   }
 
+  /**
+   * Closes the message window
+   */
   close(): void {
     this.childEvent.emit();
   }

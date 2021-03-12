@@ -6,6 +6,10 @@ import { Contact } from './contact';
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
+  /**
+   * Populates initial contacts
+   * @returns - starting contacts
+   */
   createDb() {
     const contacts = [
       {
@@ -72,6 +76,11 @@ export class InMemoryDataService implements InMemoryDbService {
     return { contacts };
   }
 
+  /**
+   * Generates the id for a new contact
+   * @param contacts - existing contacts
+   * @returns - the id for the new contact
+   */
   genId(contacts: Contact[]): number {
     return contacts.length > 0
       ? Math.max(...contacts.map((contact) => contact.id)) + 1
