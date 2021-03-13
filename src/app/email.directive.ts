@@ -10,8 +10,11 @@ import {
 export function emailValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const text = control.value;
-    console.log(text, text.length);
-    const no = text.length > 0 && text.trim() === '';
+    const no =
+      text.length > 0 &&
+      !/^(([^<>()\[\]\\.,;:@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))[\s]*$/.test(
+        text
+      );
     return no ? { email: { value: text } } : null;
   };
 }

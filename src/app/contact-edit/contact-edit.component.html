@@ -1,15 +1,29 @@
 <div *ngIf="contact">
-  <form>
+  <form [formGroup]="contactInfo">
     <div class="form-group">
       <label for="contact-first-name">First name:</label>
       <input
         type="text"
         class="form-control"
         id="contact-first-name"
-        name="contact-first-name"
-        [(ngModel)]="contact.firstName"
         placeholder="First name"
+        formControlName="firstName"
+        [ngClass]="{
+          'is-invalid':
+            firstName.invalid && (firstName.dirty || firstName.touched)
+        }"
       />
+      <div
+        *ngIf="
+          firstName.errors &&
+          firstName.invalid &&
+          (firstName.dirty || firstName.touched)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="firstName.errors.required">First name is required.</div>
+        <div *ngIf="firstName.errors.whitespace">First name is invalid.</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="contact-last-name">Last name:</label>
@@ -17,10 +31,18 @@
         type="text"
         class="form-control"
         id="contact-last-name"
-        name="contact-last-name"
-        [(ngModel)]="contact.lastName"
         placeholder="Last name"
+        formControlName="lastName"
+        [ngClass]="{
+          'is-invalid': lastName.invalid
+        }"
       />
+      <div
+        *ngIf="lastName.errors && lastName.invalid"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="lastName.errors.whitespace">Last name is invalid.</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="contact-nickname">Nickname:</label>
@@ -28,32 +50,116 @@
         type="text"
         class="form-control"
         id="contact-nickname"
-        name="contact-nickname"
-        [(ngModel)]="contact.nickname"
         placeholder="Nickname"
+        formControlName="nickname"
+        [ngClass]="{
+          'is-invalid': nickname.invalid
+        }"
       />
+      <div
+        *ngIf="nickname.errors && nickname.invalid"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="nickname.errors.whitespace">Nickname is invalid.</div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="contact-address">Address:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="contact-address"
-        name="contact-address"
-        [(ngModel)]="contact.address"
-        placeholder="Address"
-      />
+    <div formGroupName="address">
+      <div class="form-group">
+        <label for="contact-street">Street:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="contact-street"
+          placeholder="Street"
+          formControlName="street"
+          [ngClass]="{
+            'is-invalid': street.invalid
+          }"
+        />
+        <div
+          *ngIf="street.errors && street.invalid"
+          class="alert alert-danger mt-1"
+        >
+          <div *ngIf="street.errors.whitespace">Street is invalid.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contact-city">City:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="contact-city"
+          placeholder="City"
+          formControlName="city"
+          [ngClass]="{
+            'is-invalid': city.invalid
+          }"
+        />
+        <div
+          *ngIf="city.errors && city.invalid"
+          class="alert alert-danger mt-1"
+        >
+          <div *ngIf="city.errors.whitespace">City is invalid.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contact-state">State:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="contact-state"
+          placeholder="State"
+          formControlName="state"
+          [ngClass]="{
+            'is-invalid': state.invalid
+          }"
+        />
+        <div
+          *ngIf="state.errors && state.invalid"
+          class="alert alert-danger mt-1"
+        >
+          <div *ngIf="state.errors.whitespace">State is invalid.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="contact-zip">ZIP:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="contact-zip"
+          placeholder="Zip"
+          formControlName="zip"
+          [ngClass]="{
+            'is-invalid': zip.invalid
+          }"
+        />
+        <div *ngIf="zip.errors && zip.invalid" class="alert alert-danger mt-1">
+          <div *ngIf="zip.errors.whitespace">ZIP is invalid.</div>
+          <div *ngIf="zip.errors.minlength || zip.errors.maxlength">
+            ZIP should be 5 digits.
+          </div>
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label for="contact-email">Email:</label>
+      <!-- Check why type "email" doesn't work -->
       <input
-        type="email"
+        type="text"
         class="form-control"
         id="contact-email"
-        name="contact-email"
-        [(ngModel)]="contact.email"
         placeholder="Email"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid': email.invalid
+        }"
       />
+      <div
+        *ngIf="email.errors && email.invalid"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="email.errors.email">Invalid email.</div>
+      </div>
     </div>
     <div class="form-group">
       <label for="contact-phone">Phone:</label>
@@ -61,18 +167,28 @@
         type="tel"
         class="form-control"
         id="contact-phone"
-        name="contact-phone"
-        [(ngModel)]="contact.phone"
         placeholder="Phone"
+        formControlName="phone"
+        [ngClass]="{
+          'is-invalid': phone.invalid && (phone.dirty || phone.touched)
+        }"
       />
+      <div
+        *ngIf="phone.errors && phone.invalid && (phone.dirty || phone.touched)"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="phone.errors.required">Phone is required.</div>
+        <div *ngIf="phone.errors.minlength || phone.errors.maxlength">
+          Phone should be 10 digits.
+        </div>
+      </div>
     </div>
     <div class="form-check form-group">
       <input
         type="checkbox"
         class="form-check-input clickable"
         id="contact-favorite"
-        name="contact-favorite"
-        [(ngModel)]="contact.favorite"
+        formControlName="favorite"
       />
       <label class="form-check-label clickable" for="contact-favorite"
         >Favorite</label
@@ -84,7 +200,11 @@
       </button>
     </div>
     <div class="d-flex justify-content-between">
-      <button type="submit" class="btn btn-outline-success" (click)="save()">
+      <button
+        [disabled]="contactInfo.pristine || contactInfo.invalid"
+        class="btn btn-outline-success"
+        (click)="save()"
+      >
         Save
       </button>
       <button class="btn btn-outline-primary" (click)="goBack()">Cancel</button>

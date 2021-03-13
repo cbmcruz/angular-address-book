@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="contactInfo">
   <div class="form-group">
     <label for="contact-first-name">First name:</label>
     <input
@@ -6,16 +6,20 @@
       class="form-control"
       id="contact-first-name"
       placeholder="First name"
-      [formControl]="firstName"
-      required
+      formControlName="firstName"
+      [ngClass]="{
+        'is-invalid':
+          firstName.invalid &&
+          (firstName.dirty || firstName.touched || submitted)
+      }"
     />
     <div
       *ngIf="
         firstName.errors &&
         firstName.invalid &&
-        (firstName.dirty || firstName.touched)
+        (firstName.dirty || firstName.touched || submitted)
       "
-      class="alert alert-danger"
+      class="alert alert-danger mt-1"
     >
       <div *ngIf="firstName.errors.required">First name is required.</div>
       <div *ngIf="firstName.errors.whitespace">First name is invalid.</div>
@@ -28,9 +32,15 @@
       class="form-control"
       id="contact-last-name"
       placeholder="Last name"
-      [formControl]="lastName"
+      formControlName="lastName"
+      [ngClass]="{
+        'is-invalid': lastName.invalid
+      }"
     />
-    <div *ngIf="lastName.errors && lastName.invalid" class="alert alert-danger">
+    <div
+      *ngIf="lastName.errors && lastName.invalid"
+      class="alert alert-danger mt-1"
+    >
       <div *ngIf="lastName.errors.whitespace">Last name is invalid.</div>
     </div>
   </div>
@@ -41,39 +51,108 @@
       class="form-control"
       id="contact-nickname"
       placeholder="Nickname"
-      [formControl]="nickname"
+      formControlName="nickname"
+      [ngClass]="{
+        'is-invalid': nickname.invalid
+      }"
     />
-    <div *ngIf="nickname.errors && nickname.invalid" class="alert alert-danger">
+    <div
+      *ngIf="nickname.errors && nickname.invalid"
+      class="alert alert-danger mt-1"
+    >
       <div *ngIf="nickname.errors.whitespace">Nickname is invalid.</div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="contact-address">Address:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="contact-address"
-      placeholder="Address"
-      [formControl]="address"
-    />
-    <div *ngIf="address.errors && address.invalid" class="alert alert-danger">
-      <div *ngIf="address.errors.whitespace">Address is invalid.</div>
+  <div formGroupName="address">
+    <div class="form-group">
+      <label for="contact-street">Street:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="contact-street"
+        placeholder="Street"
+        formControlName="street"
+        [ngClass]="{
+          'is-invalid': street.invalid
+        }"
+      />
+      <div
+        *ngIf="street.errors && street.invalid"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="street.errors.whitespace">Street is invalid.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="contact-city">City:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="contact-city"
+        placeholder="City"
+        formControlName="city"
+        [ngClass]="{
+          'is-invalid': city.invalid
+        }"
+      />
+      <div *ngIf="city.errors && city.invalid" class="alert alert-danger mt-1">
+        <div *ngIf="city.errors.whitespace">City is invalid.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="contact-state">State:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="contact-state"
+        placeholder="State"
+        formControlName="state"
+        [ngClass]="{
+          'is-invalid': state.invalid
+        }"
+      />
+      <div
+        *ngIf="state.errors && state.invalid"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="state.errors.whitespace">State is invalid.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="contact-zip">ZIP:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="contact-zip"
+        placeholder="Zip"
+        formControlName="zip"
+        [ngClass]="{
+          'is-invalid': zip.invalid
+        }"
+      />
+      <div *ngIf="zip.errors && zip.invalid" class="alert alert-danger mt-1">
+        <div *ngIf="zip.errors.whitespace">ZIP is invalid.</div>
+        <div *ngIf="zip.errors.minlength || zip.errors.maxlength">
+          ZIP should be 5 digits.
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-group">
     <label for="contact-email">Email:</label>
     <!-- Check why type "email" doesn't work -->
     <input
-      type="email"
+      type="text"
       class="form-control"
       id="contact-email"
       placeholder="Email"
-      [formControl]="email"
+      formControlName="email"
+      [ngClass]="{
+        'is-invalid': email.invalid
+      }"
     />
-    <div *ngIf="email.errors && email.invalid" class="alert alert-danger">
-      <div *ngIf="email.errors.email || email.errors.whitespace">
-        Invalid email.
-      </div>
+    <div *ngIf="email.errors && email.invalid" class="alert alert-danger mt-1">
+      <div *ngIf="email.errors.email">Invalid email.</div>
     </div>
   </div>
   <div class="form-group">
@@ -83,12 +162,19 @@
       class="form-control"
       id="contact-phone"
       placeholder="Phone"
-      [formControl]="phone"
-      required
+      formControlName="phone"
+      [ngClass]="{
+        'is-invalid':
+          phone.invalid && (phone.dirty || phone.touched || submitted)
+      }"
     />
     <div
-      *ngIf="phone.errors && phone.invalid && (phone.dirty || phone.touched)"
-      class="alert alert-danger"
+      *ngIf="
+        phone.errors &&
+        phone.invalid &&
+        (phone.dirty || phone.touched || submitted)
+      "
+      class="alert alert-danger mt-1"
     >
       <div *ngIf="phone.errors.required">Phone is required.</div>
       <div *ngIf="phone.errors.minlength || phone.errors.maxlength">
@@ -101,14 +187,18 @@
       type="checkbox"
       class="form-check-input clickable"
       id="contact-favorite"
-      [formControl]="favorite"
+      formControlName="favorite"
     />
     <label class="form-check-label clickable" for="contact-favorite"
       >Favorite</label
     >
   </div>
   <div class="d-flex justify-content-between">
-    <button type="submit" class="btn btn-outline-success" (click)="add()">
+    <button
+      [disabled]="contactInfo.invalid && submitted"
+      class="btn btn-outline-success"
+      (onClick)="add()"
+    >
       Add
     </button>
     <button class="btn btn-outline-primary" (click)="goBack()">Cancel</button>

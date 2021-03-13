@@ -3,7 +3,10 @@ export interface Contact {
   firstName: string;
   lastName: string;
   nickname: string;
-  address: string;
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
   email: string;
   phone: string;
   favorite: boolean;

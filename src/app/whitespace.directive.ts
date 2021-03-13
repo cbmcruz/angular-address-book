@@ -10,7 +10,6 @@ import {
 export function whitespaceValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const text = control.value;
-    console.log(text, text.length);
     const no = text.length > 0 && text.trim() === '';
     return no ? { whitespace: { value: text } } : null;
   };
