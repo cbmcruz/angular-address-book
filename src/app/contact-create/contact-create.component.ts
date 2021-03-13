@@ -107,33 +107,35 @@ export class ContactCreateComponent implements OnInit {
    */
   add(): void {
     this.submitted = true;
-    const firstName = this.firstName.value.trim();
-    const lastName = this.lastName.value.trim();
-    const nickname = this.nickname.value.trim();
-    const street = this.street.value.trim();
-    const city = this.city.value.trim();
-    const state = this.state.value.trim();
-    const zip = this.zip.value;
-    const email = this.email.value.trim();
-    const phone = this.phone.value;
-    const favorite = this.favorite.value;
-    this.contactService
-      .addContact({
-        firstName,
-        lastName,
-        nickname,
-        street,
-        city,
-        state,
-        zip,
-        email,
-        phone,
-        favorite,
-      } as Contact)
-      .subscribe((contact) => {
-        this.location.replaceState('/contacts');
-        this.router.navigate(['/detail', contact.id]);
-      });
+    if (this.contactInfo.valid) {
+      const firstName = this.firstName.value.trim();
+      const lastName = this.lastName.value.trim();
+      const nickname = this.nickname.value.trim();
+      const street = this.street.value.trim();
+      const city = this.city.value.trim();
+      const state = this.state.value.trim();
+      const zip = this.zip.value;
+      const email = this.email.value.trim();
+      const phone = this.phone.value;
+      const favorite = this.favorite.value;
+      this.contactService
+        .addContact({
+          firstName,
+          lastName,
+          nickname,
+          street,
+          city,
+          state,
+          zip,
+          email,
+          phone,
+          favorite,
+        } as Contact)
+        .subscribe((contact) => {
+          this.location.replaceState('/contacts');
+          this.router.navigate(['/detail', contact.id]);
+        });
+    }
   }
 
   /**
